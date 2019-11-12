@@ -3,12 +3,12 @@ import csv
 
 
 #constant names of the files
-petCSV = "DADSA 2019-20 CWK A DATA PETS.csv"
-listOfAttr = ["animalID","typeOfAnimal","breed","vaccinated","neutered","microchipNumber","adoptionReason","dateOfArrival","dateOfDeparture","destination","destinationAddress"]
+#petCSV = "data/DADSA 2019-20 CWK A DATA PETS.csv"
+#listOfAttr = ["animalID","typeOfAnimal","breed","vaccinated","neutered","microchipNumber","adoptionReason","dateOfArrival","dateOfDeparture","destination","destinationAddress"]
 
 
 
-listOfAnimals = LinkedList()
+#listOfAnimals = LinkedList()
 
 #function to read a csv file and store contents into a LinkedList
 def readCSV(nameOfFile, listOfObjects, typeOfObject, listOfAttributes):
@@ -36,15 +36,12 @@ def readCSV(nameOfFile, listOfObjects, typeOfObject, listOfAttributes):
             else:
                 line_count = line_count+1
 
-#test the add() function
-#animal = Animal(1)
-#animal.animalID = 3
-#print(animal.get_animalID())
-#listOfAnimals.add(animal)
-#print(listOfAnimals.is_empty())
-#print(listOfAnimals.size())
 
-readCSV(petCSV,listOfAnimals,PetAnimal,listOfAttr)
-print("The list of animals is: ")
-print(listOfAnimals.size())
-print(listOfAnimals.head.get_animalID())
+
+
+#readCSV(petCSV,listOfAnimals,PetAnimal,listOfAttr)
+#print("The list of animals is: ")
+#print(listOfAnimals.size())
+#print(listOfAnimals.head.get_animalID())
+
+#print(listOfAnimals.search("animalID","P23543"))

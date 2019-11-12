@@ -43,7 +43,7 @@ print("The number of animals in the list 'list of animals' is: ", len(listOfAnim
 testIndex = 2
 test3 = listOfAnimals[testIndex].adoptionReason
 print("the name of the animal in the list at index ",testIndex, " is: ", test3)
-#
+
 
 print([animal.animalID for animal in listOfAnimals])
 

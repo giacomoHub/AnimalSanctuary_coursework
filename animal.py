@@ -19,7 +19,23 @@ class Animal:
     def get_animalID(self):
         return self.animalID
 
-class LinkedList():
+    def get(self, attributeName):
+        return self.__getattribute__(attributeName)
+
+    def toString(self):
+        print(self.animalID)
+        print(self.typeOfAnimal)
+        print(self.breed)
+        print(self.vaccinated)
+        print(self.neutered)
+        print(self.microchipNumber)
+        print(self.adoptionReason)
+        print(self.dateOfArrival)
+        print(self.dateOfDeparture)
+        print(self.destination)
+        print(self.destinationAddress)
+
+class LinkedList:
     def __init__(self):
         self.head = None
 
@@ -54,19 +70,21 @@ class LinkedList():
             temp.set_next(current)
             previous.set_next(temp)
 
-    def search(self, item):
+    #function to search a particular object(node) in the list 
+    #takes in attributeToSearch (ie. animalID or Vaccinated)
+    def search(self, attributeToSearch, item):
         current = self.head
         found = False
         stop = False
         while current != None and not found and not stop:
-            if current.get_data() == item:
+            if current.get(attributeToSearch) == item:
                 found = True
             else:
-                if current.get_data() > item:
+                if current.get_animalID() > item:
                     stop = True
                 else:
                     current = current.get_next()
-
+        
         return found
 
     def remove(self, item):
@@ -104,14 +122,21 @@ class PetAnimal(Animal):
         self.neutered = neutered
         self.microchipNumber = microchipNumber
 
+    def pingpong(self):
+        print("this function works")
+
 class WildAnimal(Animal):
     #constructor of class pet
-    def __init__(self, animalID = "", typeOfAnimal = "", reasonOfAdmission = "", vaccinated = "", dateOfArrival = "", dateOfDeparture = "", destination = "", destinationAddress = ""):
+    def __init__(self, animalID = "", typeOfAnimal = "", admissionReason = "", vaccinated = "", dateOfArrival = "", dateOfDeparture = "", destination = "", destinationAddress = ""):
         self.animalID = animalID
         self.typeOfAnimal = typeOfAnimal
-        self.reasonOfAdmission = reasonOfAdmission
+        self.admissionReason = admissionReason
         self.vaccinated = vaccinated
         self.dateOfArrival = dateOfArrival
         self.dateOfDeparture = dateOfDeparture
         self.destination = destination
         self.destinationAddress = destinationAddress
+
+    def pang(self):
+        print("I just called pang")
+

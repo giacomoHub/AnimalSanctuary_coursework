@@ -1,0 +1,34 @@
+DOCUMENT TO EXPLAIN THE CHOICES OF DATA STRUCTURES:
+
+-----How I stored Pet Animal and Wild Animal-----
+- I have chosen an ordered linked list to read the pet animals and the wild animals.
+  I made 2 separate lists for wild animals and pet animals.
+  This choice is made because I want to keep the data ordered by animalID and the fact that if
+  The user wants to remove and item, this can be accessed without changing the whole list.
+  With a linked list it is easyer to find a particular animal because we don't have to travers the whole 
+  list to find it (In a list [2, 4, 5, 7, 8] where we want to find the item 3 
+  we can stop searching before the item 4.)
+  The downside of using a linked list is that I can't perform searching algorithms like 
+  "Binary search" so the time complexity of searching will be of O(n)
+
+
+
+
+
+  TODO:
+  -make a function in the LinkedList that searches for an entry 
+  and returns a the actual object "animal"
+
+  -test if the inheritance works and make functions for the 
+  wild animal (or constructors)
+
+  -check if the values entered into the objects are boolean
+  (for example check if "Vaccinated" is a bool)
+
+  -determine if the user entered id starts with W or P
+
+  -produce a "readyForAdoption" function into the PetAnimal
+  class. Returns a bool.
+
+  -implement a "click to go back" after every function in the
+  menu has finished working
