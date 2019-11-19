@@ -4,7 +4,31 @@
 
 #imports
 from read import readCSV
-from animal import Animal,PetAnimal,WildAnimal,LinkedList
+from animal import Animal,PetAnimal,WildAnimal,LinkedList,TreatmentObj
+def wait():
+    input("-----Press enter to procede-----")
+
+#function that prints a list to screen (it doesn't return anything)
+def printList(listToPrint):
+    i=0
+    for x in range (len(listToPrint)):
+            print(listToPrint[i].animalID)
+            i = i+1
+
+
+#1 4 4 2 2 9 9 0
+#Function that removes doubles from a list
+def removeDoubles(listToProcess):
+    result = list()
+    for element in listToProcess:
+        if element not in result:
+            result.append(element)
+    return result
+
+#function to sort a list in ascending order
+#using quicksort algorithm
+def sortList(listToProcess):
+    result = list()
 
 #menu
 def mainMenu():
@@ -20,26 +44,64 @@ def mainMenu():
     print("-0: exit")
 
     #Get user input
-    selection = int(input("select your option:"))
+    selection = int(input("select your option: "))
 
     #Switch between what the user has selected
     if(selection == 1):
         print("---You have selected 'Create an entry for a new arrival'")
+
+        wait()
         return True
 
     if(selection == 2):
         print("---You have selected 'Find data of an animal by using the santuarys ID'")
         animalID = input("Insert a valid anial ID: ")
-        #get first letter of animal id to decide if its pet or wild
-
-        animal = listOfPets.search("animalID",animalID)
-        #search if the entry exists otherwise 
-        if(listOfPets.search("animalID",animalID)==True):
-            animal.toString()
-        else:
-            print("The ID that you inserted is not present on the list")
         
+        #get first letter of animal id to decide if its pet or wild
+        if(animalID[:1].lower() == "p"):
+            #search if the entry exists otherwise 
+            if(listOfPets.searchIfExists("animalID",animalID)==True):
+                animal = listOfPets.find("animalID",animalID)
+                print(animal.toString())
+            else:
+                print("The ID that you inserted is not present on the list")
+        elif(animalID[:1].lower() == "w"):  
+            if(listOfWildAnimals.searchIfExists("animalID",animalID)==True):
+                animal = listOfWildAnimals.find("animalID",animalID)
+                print(animal.toString())
+            else:
+                print("The id that you inserted is not present on the list")
+        else:
+            print("ERROR --- INVALID ID ENTERED")
+        wait()
         return True
+
+    #List of abusive owners
+    if(selection == 3):
+        abusiveOwners = listOfTreatments.returnOccurence("abuseOwner")
+        #remove doubles
+        abusiveOwners = removeDoubles(abusiveOwners)
+        #sort
+        print(abusiveOwners)
+        wait()
+        return True
+
+    if(selection == 4):
+        catsReadyForAdoption = listOfPets.extract("Cat")
+        #print the idis of all of the cats ready for adoption
+        printList(catsReadyForAdoption)
+        wait()
+        return True
+
+    if(selection == 5):
+        dogsReadyForAdoption = listOfPets.extract("Dog")
+        #print the IDs of the dogs ready for adoption
+        printList(dogsReadyForAdoption)
+        wait()
+        return True
+
+    if(selection == 6):
+        print("you have selected six")
 
     if(selection == 7):
         stayInMenu = True
@@ -86,10 +148,16 @@ print("WELCOME TO THE SANCTUARY")
 stayInMenu = True
 PETCSV = "data/DADSA 2019-20 CWK A DATA PETS.csv"
 WILDCVS = "data/DADSA 2019-20 CWK A WILD ANIMALS.csv"
+TREATMENT = "data/DADSA 2019-20 CWK A TREATMENT.csv"
 LISTOFPETATTR = ["animalID","typeOfAnimal","breed","vaccinated","neutered","microchipNumber","adoptionReason","dateOfArrival","dateOfDeparture","destination","destinationAddress"]
 LISTOFWILDATTR = ["animalID","typeOfAnimal","vaccinated","admissionReason","dateOfArrival","dateOfDeaparture","destination","destinationAddress"]
+LISTOFTREATMENT = ["sanctuaryID","surgery","surgeryDate","medication","start","finish","abuseOwner","abandoningOwner"]
 listOfPets = LinkedList()
 listOfWildAnimals = LinkedList()
+listOfTreatments = LinkedList()
+catsReadyForAdoption = list()
+dogsReadyForAdoption = list()
+abusiveOwners = list()
 
 
 #read the CSV file
@@ -99,10 +167,12 @@ print(listOfPets.size())
 readCSV(WILDCVS,listOfWildAnimals,WildAnimal,LISTOFWILDATTR)
 print(listOfWildAnimals.size())
 
+readCSV(TREATMENT,listOfTreatments,TreatmentObj,LISTOFTREATMENT)
+print(listOfTreatments.size())
+print("---------DATA LOADED IN CORRECTLY----------")
 #sort the lists by Sanctuary ID
 
 #test things
-listOfPets.head.pingpong()
 
 
 #show menu options until the user doen't select the exit button

@@ -22,18 +22,6 @@ class Animal:
     def get(self, attributeName):
         return self.__getattribute__(attributeName)
 
-    def toString(self):
-        print(self.animalID)
-        print(self.typeOfAnimal)
-        print(self.breed)
-        print(self.vaccinated)
-        print(self.neutered)
-        print(self.microchipNumber)
-        print(self.adoptionReason)
-        print(self.dateOfArrival)
-        print(self.dateOfDeparture)
-        print(self.destination)
-        print(self.destinationAddress)
 
 class LinkedList:
     def __init__(self):
@@ -72,7 +60,7 @@ class LinkedList:
 
     #function to search a particular object(node) in the list 
     #takes in attributeToSearch (ie. animalID or Vaccinated)
-    def search(self, attributeToSearch, item):
+    def searchIfExists(self, attributeToSearch, item):
         current = self.head
         found = False
         stop = False
@@ -86,6 +74,30 @@ class LinkedList:
                     current = current.get_next()
         
         return found
+
+    def find(self,attributeToSearch,item):
+        current = self.head
+        found = False
+        stop = False
+        while current != None and not found and not stop:
+            if current.get(attributeToSearch) == item:
+                found = True
+                return current
+            else:
+                current = current.get_next()
+
+    #function to get all of the occurences of a list where the attribute is not null
+    #the function returns a list (es: list of all of the abusive owners)
+    def returnOccurence(self, attributeToSearch):
+        current = self.head
+        result = list()
+        while current != None:
+            if current.get(attributeToSearch) != "":
+                result.append(current.get(attributeToSearch))
+            current = current.get_next()
+
+        return result
+
 
     def remove(self, item):
         current = self.head
@@ -106,11 +118,30 @@ class LinkedList:
     def getLastItem(self):
         return self.head
 
+    #function that traverses the list and searches for elements that satisfy a condition
+    #returns a list
+    def extract(self,animalType):
+        current = self.head
+        #list to store the animals ready for adoption
+        result = list() 
+
+        while current != None:
+            if(current.readyForAdoption(animalType)==True):
+                result.append(current)
+            current = current.get_next()
+        
+        return result
+
+    
+
+        
+
+
 
 
 class PetAnimal(Animal): 
     #constructor of class pet
-    def __init__(self, animalID = "", typeOfAnimal = "", vaccinated = "", dateOfArrival = "", dateOfDeparture = "", destination = "", destinationAddress = "", breed = "", neutered = "", microchipNumber = ""):
+    def __init__(self, animalID = "", typeOfAnimal = "", vaccinated = "", dateOfArrival = "", dateOfDeparture = "", destination = "", destinationAddress = "", breed = "", neutered = "", microchipNumber = "9"):
         self.animalID = animalID
         self.typeOfAnimal = typeOfAnimal
         self.vaccinated = vaccinated
@@ -122,8 +153,28 @@ class PetAnimal(Animal):
         self.neutered = neutered
         self.microchipNumber = microchipNumber
 
-    def pingpong(self):
-        print("this function works")
+    def toString(self):
+        print("AnimalID:            ", self.animalID)
+        print("Type of Animal:      ", self.typeOfAnimal)
+        print("Breed:               ", self.breed)
+        print("Vaccinated:          ", self.vaccinated)
+        print("Neutered:            ", self.neutered)
+        print("MicrochipNumber:     ", self.microchipNumber)
+        print("Adoption Reason:     ", self.adoptionReason)
+        print("Date of Arrival:     ", self.dateOfArrival)
+        print("Date of Departure:   ", self.dateOfDeparture)
+        print("Destination:         ", self.destination)
+        print("Destination Address: ", self.destinationAddress)
+
+    def readyForAdoption(self, animalType):
+        ready = False
+        if(self.typeOfAnimal == animalType):
+            if(self.vaccinated == "Yes"):
+                if(self.neutered == "Yes"):
+                    if(len(self.microchipNumber)>2):
+                        ready = True
+        return ready
+
 
 class WildAnimal(Animal):
     #constructor of class pet
@@ -137,6 +188,29 @@ class WildAnimal(Animal):
         self.destination = destination
         self.destinationAddress = destinationAddress
 
-    def pang(self):
-        print("I just called pang")
+    def toString(self):
+        print("AnimalID:            ", self.animalID)
+        print("Type of Animal:      ", self.typeOfAnimal)
+        print("Vaccinated:          ", self.vaccinated)
+        print("Admission Reason:    ", self.admissionReason)
+        print("Date of Arrival:     ", self.dateOfArrival)
+        print("Date of Departure:   ", self.dateOfDeparture)
+        print("Destination:         ", self.destination)
+        print("Destination Address: ", self.destinationAddress)
 
+class TreatmentObj(Animal):
+
+    #constructor of class pet
+    def __init__(self, animalID = ""):
+        self.animalID = animalID
+            
+
+    def toString(self):
+        print("sanctuaryID:         ", self.sanctuaryID)
+        print("Surgery:             ", self.surgery)
+        print("Vaccinated:          ", self.vaccinated)
+        print("Admission reason:    ", self.admissionReason)
+        print("Date of arrival:     ", self.dateOfArrival)
+        print("dateOfDeparture:     ", self.dateOfDeparture)
+        print("destination:         ", self.destination)
+        print("destinationAddress:  ", self.destinationAddress)

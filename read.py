@@ -19,6 +19,7 @@ def readCSV(nameOfFile, listOfObjects, typeOfObject, listOfAttributes):
         tempList = list()
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
         for row in spamreader:
+            #if the line of the file isn't the column names
             if(line_count != 0):
                 index=0
                 #make a new Animal 🦒 that will then be added to the list of animal
@@ -30,18 +31,7 @@ def readCSV(nameOfFile, listOfObjects, typeOfObject, listOfAttributes):
                         setattr(tempList[lastItem],listOfAttributes[index],element)
                         index=index+1
                 #Add the new animal in the list "ListOfAnimals"
-                print(tempList[0])
                 listOfObjects.add(tempList[lastItem])
                 lastItem = lastItem+1
             else:
                 line_count = line_count+1
-
-
-
-
-#readCSV(petCSV,listOfAnimals,PetAnimal,listOfAttr)
-#print("The list of animals is: ")
-#print(listOfAnimals.size())
-#print(listOfAnimals.head.get_animalID())
-
-#print(listOfAnimals.search("animalID","P23543"))

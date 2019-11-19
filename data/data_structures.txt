@@ -8,6 +8,8 @@ DOCUMENT TO EXPLAIN THE CHOICES OF DATA STRUCTURES:
   With a linked list it is easyer to find a particular animal because we don't have to travers the whole 
   list to find it (In a list [2, 4, 5, 7, 8] where we want to find the item 3 
   we can stop searching before the item 4.)
+  The main advantage of using the linkedList is that you can insert and remove
+  items that are in the middle of the list.
   The downside of using a linked list is that I can't perform searching algorithms like 
   "Binary search" so the time complexity of searching will be of O(n)
 
@@ -17,18 +19,42 @@ DOCUMENT TO EXPLAIN THE CHOICES OF DATA STRUCTURES:
 
   TODO:
   -make a function in the LinkedList that searches for an entry 
-  and returns a the actual object "animal"
+  and returns a the actual object "animal"  ----Done
 
   -test if the inheritance works and make functions for the 
-  wild animal (or constructors)
+  wild animal (or constructors) ----Done
 
-  -check if the values entered into the objects are boolean
-  (for example check if "Vaccinated" is a bool)
+  -check wich animals have already left the sanctuary and
+  deal with them
 
-  -determine if the user entered id starts with W or P
+  -check that all the animal ready to be returned haven't got 
+  surgeries impending 
 
-  -produce a "readyForAdoption" function into the PetAnimal
-  class. Returns a bool.
+  -read the TREATMENT file and store wherever --DONE
 
-  -implement a "click to go back" after every function in the
-  menu has finished working
+  -implement a function that gets the abusive owners --DONE
+
+  -produce the sorting algorithm for the abusive owners
+
+  -Make the remove item function
+
+  
+
+
+
+
+  Questions to professor:
+
+  -Can we use built in lists to store data?
+
+  -In the list for the animals ready for adoption does the table
+  have to have explicitly stated "Adopted"?
+
+  -In the list of animal ready for adoption do we have to check 
+  the dates?
+
+  -When we make the "lists" (readyForAdoption, abusiveOweners, etc..)
+  do we have to return a list or print to screen?
+
+  -when we create the entry for new arrival how do we go about asking 
+  the user? and what about when we edit an animal?
